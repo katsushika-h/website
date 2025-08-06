@@ -34,4 +34,21 @@ class LeafNode(HTMLNode):
         
         return f"<{self.tag}>{self.value}</{self.tag}>"
 
-    
+class ParentNode(HTMLNode):
+    def __init__(self, tag, children, props = None):
+        super().__init__(tag, None, children, props)
+
+    def to_html(self):
+        if self.tag == None:
+            raise ValueError("Tag cannot be empty")
+        elif self.children == None:
+            raise ValueError("Chldren cannot be empty")
+        
+        childnodes = "" 
+        for node in self.children:
+            childnodes += node.to_html()
+
+
+        return f"<{self.tag}>{self.children.</{self.tag}>"
+
+#test   
