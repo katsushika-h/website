@@ -21,6 +21,7 @@ class HTMLNode:
     def __repr__(self):
         print(f"tag = {self.tag}, value = {self.value}, children = {self.children}, props = {self.props_to_html()}")
 
+
 class LeafNode(HTMLNode):
     def __init__(self, tag, value, props = None):
         super().__init__(tag, value, None, props)
@@ -48,7 +49,8 @@ class ParentNode(HTMLNode):
         for node in self.children:
             childnodes += node.to_html()
 
+        print(f"<{self.tag}>{childnodes}</{self.tag}>")
+        return f"<{self.tag}{self.props_to_html()}>{childnodes}</{self.tag}>"
 
-        return f"<{self.tag}>{self.children.</{self.tag}>"
-
-#test   
+    def __repr__(self):
+        return f'ParentNode(tag: {self.tag}, children: {self.children}, props: {self.props}, )'
